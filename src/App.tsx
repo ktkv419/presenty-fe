@@ -1,10 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+import reactLogo from "./assets/react.svg"
+import viteLogo from "/vite.svg"
+import "./App.css"
+import { useTranslation } from "react-i18next"
+import useUIStore from './shared/ui/ui.modal'
 
 function App() {
+  const { t } = useTranslation()
   const [count, setCount] = useState(0)
+  const languageChange = () => useUIStore((state) => state.changeLanguage("ru"))
 
   return (
     <>
@@ -16,9 +20,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>{t("title")}</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => languageChange()}>
           count is {count}
         </button>
         <p>
